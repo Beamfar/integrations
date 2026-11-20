@@ -1,0 +1,17 @@
+{
+  "name": "beamfar",
+  "owner": {
+    "name": "Beamfar",
+    "url": "https://beamfar.com"
+  },
+  "plugins": [
+    {
+      "name": "beamfar",
+      "source": "./",
+      "description": "Read-only website monitoring for Claude Code: check sites, open incidents, two-region evidence, pre-incident timelines, security findings, and client reports.",
+      "version": "1.0.0",
+      "homepage": "https://beamfar.com/mcp-server",
+      "license": "MIT"
+    }
+  ]
+}
