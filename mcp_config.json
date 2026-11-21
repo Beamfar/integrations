@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "beamfar": {
+      "url": "https://api.beamfar.com/mcp"
+    }
+  }
+}

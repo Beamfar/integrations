@@ -1,0 +1,30 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "beamfar",
+  "displayName": "Beamfar",
+  "version": "1.2.0",
+  "description": "Read-only two-region website monitoring for Google Antigravity: inspect site uptime, confirmed incidents, likely causes, pre-incident DNS/TLS/SEO changes, security findings, and monthly client reports.",
+  "logo": "assets/logo.png",
+  "suggestedPrompts": [
+    "Which monitored sites are down, degraded, or have expiring TLS certificates right now?",
+    "Triage our latest open incident: show two-region evidence, likely cause, and what changed beforehand.",
+    "Review portfolio security scan warnings, coverage gaps, and open DNS record changes."
+  ],
+  "author": {
+    "name": "Beamfar",
+    "url": "https://beamfar.com"
+  },
+  "homepage": "https://beamfar.com/mcp-server",
+  "repository": "https://github.com/Beamfar/integrations",
+  "license": "MIT",
+  "keywords": [
+    "monitoring",
+    "uptime",
+    "ssl",
+    "dns",
+    "seo",
+    "incidents",
+    "security",
+    "mcp"
+  ]
+}
