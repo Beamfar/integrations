@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "beamfar": {
+      "type": "http",
+      "url": "https://api.beamfar.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${BEAMFAR_API_KEY}"
+      }
+    }
+  }
+}

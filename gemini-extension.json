@@ -1,0 +1,14 @@
+{
+  "name": "beamfar",
+  "version": "1.1.0",
+  "description": "Read-only website monitoring for Gemini CLI: check sites, open incidents, two-region evidence, pre-incident timelines, security findings, and client reports.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "beamfar": {
+      "httpUrl": "https://api.beamfar.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${BEAMFAR_API_KEY}"
+      }
+    }
+  }
+}

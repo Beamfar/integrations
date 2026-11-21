@@ -1,0 +1,9 @@
+# Drop into ~/.codex/config.toml (or .codex/config.toml in your repository)
+# Option 1 (recommended): OAuth 2.1 sign-in via `codex mcp login beamfar` (no API key needed)
+[mcp_servers.beamfar]
+url = "https://api.beamfar.com/mcp"
+
+# Option 2: Read-only organisation API key from your shell environment
+# [mcp_servers.beamfar]
+# url = "https://api.beamfar.com/mcp"
+# bearer_token_env_var = "BEAMFAR_API_KEY"

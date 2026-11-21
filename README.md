@@ -1,64 +1,68 @@
-# Beamfar — Claude Code Plugin
+# Beamfar — AI Assistant Add-ons (Claude Code, Gemini CLI, OpenAI Codex & MCP)
 
-Connect Claude Code to [Beamfar](https://beamfar.com/mcp-server)'s hosted, read-only MCP server (`https://api.beamfar.com/mcp`) to check monitored sites, inspect two-region incident evidence, review pre-incident DNS/TLS/deploy timelines, check external security findings, and summarise monthly client reports.
+Connect your AI assistant to [Beamfar](https://beamfar.com/mcp-server)'s hosted, read-only MCP server (`https://api.beamfar.com/mcp`) to check monitored sites, inspect two-region incident evidence, correlate pre-incident DNS/TLS/deploy timelines, review external security findings, and summarise monthly client reports.
 
 - **Read-only by design:** All 12 MCP tools only read stored monitoring observations — nothing can modify sites, monitors, alerts, billing, or status pages.
-- **Included on every plan (Free included):** Works on Free (3,000 API/MCP requests per month, 10 requests per minute), Solo, Team, Agency, and Agency Plus. Connecting (`initialize` and `tools/list`) is free and spends zero quota units.
-- **EU-hosted Streamable HTTP:** Connects directly to `https://api.beamfar.com/mcp` with no local Python runtime, Node.js bridge, or database access required.
+- **OAuth 2.1 or API key:** Sign in directly via OAuth 2.1 (PKCE S256) in Claude.ai, ChatGPT, Claude Code, Codex, and Gemini CLI, or pass a read-only `BEAMFAR_API_KEY` (`bfk_...`).
+- **Included on every plan (Free included):** Works on Free (3,000 API/MCP requests per month, 10 requests per minute), Solo, Team, Agency, and Agency Plus.
+- **EU-hosted Streamable HTTP:** Runs in Falkenstein, Germany (Hetzner) with zero local database or runtime required.
 
-## 2-minute setup
+---
 
-### 1. Create a read-only API key in Beamfar
+## Quick Install
 
-1. Sign in to [Beamfar](https://app.beamfar.com/app) as an organisation owner or admin.
-2. Open **Integrations & API -> AI assistants** (or **API keys**), create a **Read-only** key (`scope: read`), and copy the `bfk_...` token (shown once).
-3. Export it in your shell environment (never commit a key to git):
-
-```bash
-export BEAMFAR_API_KEY="bfk_your_read_only_key_here"
-```
-
-### 2. Install the plugin in Claude Code
-
-From a public GitHub repository or local checkout:
+### 1. Claude Code (Official Plugin)
 
 ```bash
 claude plugin marketplace add beamfar/integrations
 claude plugin install beamfar@beamfar
 ```
 
-Or connect the MCP endpoint directly with a single command:
+Run `/beamfar:check-sites` or ask in plain English. Or connect the endpoint directly:
 
 ```bash
-claude mcp add --transport http beamfar https://api.beamfar.com/mcp \
-  --header "Authorization: Bearer ${BEAMFAR_API_KEY}"
+claude mcp add --transport http beamfar https://api.beamfar.com/mcp
 ```
 
-### 3. Try it
+### 2. Google Gemini CLI (Official Extension)
 
-Run the slash command in Claude Code:
-
-```text
-/beamfar:check-sites
+```bash
+gemini extensions install https://github.com/Beamfar/integrations
 ```
 
-Or ask in plain English:
+Installs the MCP server, `GEMINI.md` triage rules, `incident-triage` skill, and `/beamfar:check-sites`. Or connect directly:
 
-- *"Which of our sites are down or having regional issues right now?"*
-- *"Show the two-region evidence and what changed before the latest incident on shop.example.com."*
-- *"Are any TLS certificates or domains expiring soon across our portfolio?"*
-- *"Which sites have warnings or incomplete coverage in the latest security scan?"*
+```bash
+gemini mcp add --transport http --header "Authorization: Bearer ${BEAMFAR_API_KEY}" beamfar https://api.beamfar.com/mcp
+```
 
-## What is included
+### 3. OpenAI Codex CLI & App (Plugin, `config.toml` & Skill)
 
-| Component | Path | Purpose |
+```bash
+codex mcp add beamfar --url https://api.beamfar.com/mcp
+codex mcp login beamfar
+```
+
+Or copy [`codex/config.toml`](codex/config.toml) into `~/.codex/config.toml` (and [`skills/incident-triage/SKILL.md`](skills/incident-triage/SKILL.md) into `~/.codex/skills/beamfar-incident-triage/SKILL.md`).
+
+### 4. Claude.ai, ChatGPT, Cursor & VS Code
+
+- **Claude.ai & Claude Desktop:** Settings -> Connectors -> Add custom connector -> `https://api.beamfar.com/mcp` (OAuth 2.1).
+- **ChatGPT:** Settings -> Connectors -> Create custom connector -> `https://api.beamfar.com/mcp` (OAuth 2.1).
+- **Cursor & VS Code (1-click install):** Visit [beamfar.com/mcp-server](https://beamfar.com/mcp-server).
+- **Official MCP Registry:** `com.beamfar/website-monitoring`.
+
+---
+
+## Repository Layout
+
+| Assistant | Manifest / Entry Point | Included Components |
 | --- | --- | --- |
-| MCP server config | `.mcp.json` | Connects to `https://api.beamfar.com/mcp` (`http` / Streamable HTTP) with `Authorization: Bearer ${BEAMFAR_API_KEY}`. |
-| Triage skill | `skills/incident-triage/SKILL.md` | Teaches Claude to verify maintenance windows, read two-region confirming evidence, correlate pre-incident timelines, and present `explain_incident` results as ranked evidence rather than diagnoses. |
-| Slash command | `commands/check-sites.md` | `/beamfar:check-sites` for a fast portfolio health and open-incident briefing. |
-| Plugin manifests | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` | Metadata for Claude Code plugin installation and marketplace discovery. |
+| **Claude Code** | `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.mcp.json` | Hosted MCP server, `/beamfar:check-sites` command (`commands/check-sites.md`), `incident-triage` skill |
+| **Gemini CLI** | `gemini-extension.json`, `GEMINI.md` | Hosted MCP server, context rules, `/beamfar:check-sites` command (`commands/beamfar/check-sites.toml`), `incident-triage` skill |
+| **OpenAI Codex** | `plugin.json`, `mcp.json`, `AGENTS.md`, `codex/config.toml` | Hosted MCP server, Codex plugin descriptor, `config.toml`, `incident-triage` skill |
 
-## The 12 read-only MCP tools
+## The 12 Read-Only MCP Tools
 
 | Tool | What it reads |
 | --- | --- |
@@ -75,13 +79,14 @@ Or ask in plain English:
 | `list_maintenance` | Planned maintenance schedules (`upcoming`, `active`, `ended`) and active/next windows. |
 | `dns_changes` | Confirmed changes in watched NS, MX, SPF, DMARC, CAA, and TXT records. |
 
-## Safety & privacy
+## Safety & Privacy
 
-- **Untrusted content fencing:** Text read from monitored websites or DNS records arrives inside `<<<UNTRUSTED ...>>>` blocks and is treated strictly as data, never as instructions. Hidden prompt-injection text targeting AI assistants is redacted by Beamfar before it reaches the MCP response.
-- **Key hygiene:** Keep `BEAMFAR_API_KEY` in your environment or OS secret store. Owners and admins can rotate or revoke keys anytime in Beamfar under **Integrations & API**.
+- **Untrusted content fencing:** Text read from monitored websites or DNS records arrives inside `<<<UNTRUSTED ...>>>` blocks and is treated strictly as data, never as instructions.
+- **No fabricated measurements:** Missing checks always return `"data unavailable"`.
+- **Instant revocation:** Revoke any OAuth grant or API key anytime in Beamfar under **Settings -> Connected assistants** or **Integrations & API**.
 
-## Trademarks & license
+## Trademarks & License
 
-Claude and Claude Code are trademarks of Anthropic, PBC. Beamfar is an independent service and is not affiliated with or endorsed by Anthropic.
+Claude and Claude Code are trademarks of Anthropic, PBC. Gemini is a trademark of Google LLC. Codex and ChatGPT are trademarks of OpenAI. Beamfar is an independent service and is not affiliated with or endorsed by any assistant vendor.
 
 MIT License — see [LICENSE](LICENSE).
