@@ -1,8 +1,8 @@
 {
   "schema_version": "v1",
   "name": "beamfar",
-  "version": "1.2.0",
-  "description": "Read-only website monitoring for OpenAI Codex: check sites, open incidents, two-region evidence, pre-incident timelines, security findings, and client reports.",
+  "version": "1.3.0",
+  "description": "Read-only two-region website monitoring for OpenAI Codex: incident triage, pre-deploy checks, agency morning briefs, SEO regression guard, SSL/DNS diffs, and client reports.",
   "homepage": "https://beamfar.com/mcp-server",
   "license": "MIT",
   "extensions": {

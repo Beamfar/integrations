@@ -2,13 +2,14 @@
   "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "beamfar",
   "displayName": "Beamfar",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Read-only two-region website monitoring for Google Antigravity: inspect site uptime, confirmed incidents, likely causes, pre-incident DNS/TLS/SEO changes, security findings, and monthly client reports.",
   "logo": "assets/logo.png",
   "suggestedPrompts": [
-    "Which monitored sites are down, degraded, or have expiring TLS certificates right now?",
+    "Run my morning client brief: which sites are down, have expiring SSL/domains, SEO blocks, or open incidents?",
+    "Post-deploy check: verify two-region health, recent DNS/TLS/SEO changes, and external security for my site.",
     "Triage our latest open incident: show two-region evidence, likely cause, and what changed beforehand.",
-    "Review portfolio security scan warnings, coverage gaps, and open DNS record changes."
+    "Check whether any recent release added noindex, blocked robots.txt, or shifted canonicals across my sites."
   ],
   "author": {
     "name": "Beamfar",
