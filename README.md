@@ -10,8 +10,9 @@
 Connect **Claude, Claude Code, GitHub Copilot / VS Code, Google Antigravity, Gemini CLI, OpenAI Codex, ChatGPT, or Cursor** to [Beamfar](https://beamfar.com/mcp-server)'s hosted, strictly read-only MCP server (`https://api.beamfar.com/mcp`) to verify deploys, triage confirmed two-region outages, catch accidental `noindex` / `robots.txt` regressions, track expiring SSL certificates and domains, and generate 30-second client risk briefs — straight from your editor or terminal.
 
 - **Two-region EU confirmation (Germany + Finland):** Outages open only when both regions agree; a single-region blip is recorded as a regional anomaly with no outage spam.
-- **Strictly read-only by design:** All 12 MCP tools only read stored monitoring evidence — no assistant can delete monitors, pause alerts, or alter billing.
+- **Strictly read-only by design:** All 16 MCP tools only read stored monitoring evidence — no assistant can delete monitors, pause alerts, or alter billing.
 - **Zero-secret OAuth 2.1 (PKCE S256):** Connect in two clicks without copying static API keys (scoped read-only `BEAMFAR_API_KEY` also supported).
+- **Listed on Glama & Official MCP Registry:** [Glama MCP Directory](https://glama.ai/mcp/connectors/com.beamfar/website-monitoring) · Official MCP Registry `com.beamfar/website-monitoring`.
 - **Free plan included (€0 forever, no card):** 1 site checked every 5 minutes from both EU regions, 3,000 API/MCP requests per month, 10 requests per minute, email + push alerts, and 1 public status page.
 - **Test any public site with zero login:** Run a free live check right now at [beamfar.com/scan](https://beamfar.com/scan?utm_source=github&utm_medium=readme&utm_campaign=integrations_repo).
 
@@ -105,7 +106,7 @@ Or copy [`codex/config.toml`](codex/config.toml) into `~/.codex/config.toml` and
 
 ---
 
-## The 12 Read-Only MCP Tools
+## The 16 Read-Only MCP Tools
 
 | Tool | What it reads |
 | --- | --- |
@@ -121,6 +122,10 @@ Or copy [`codex/config.toml`](codex/config.toml) into `~/.codex/config.toml` and
 | `site_security` | Latest scan details for one site: coverage, gaps, software components, and external findings with evidence. |
 | `list_maintenance` | Planned maintenance schedules (`upcoming`, `active`, `ended`) and active/next windows. |
 | `dns_changes` | Confirmed changes in watched NS, MX, SPF, DMARC, CAA, and TXT records. |
+| `exploit_watch` | Ranked Exploit Watch open risk chains, cross-site CISA KEV/OSV advisory threads, and stack-specific fix cards. |
+| `site_security_layers` | Connected read-only security layers (seen of applicable), auto-detected stack, and visibility gaps for one site. |
+| `am_i_under_attack` | Two-row compromise vs attack-attempt check, ordered response steps, and explicit blind spots for one site. |
+| `security_audit_surface` | Disprove-verified live attack-surface and coverage ledger (confirmed vs needs-verification findings, exposed APIs/secrets, blind spots) for one site. |
 
 ---
 
