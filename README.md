@@ -1,6 +1,6 @@
 # Beamfar — AI Assistant Add-ons & Read-Only MCP Server
 
-[![Glama Grade A](https://img.shields.io/badge/Glama_TDQS-Grade_A_(4.7%2F5)-10b981)](https://glama.ai/mcp/connectors/com.beamfar/website-monitoring)
+[![Beamfar MCP connector](https://glama.ai/mcp/connectors/com.beamfar/website-monitoring/badges/score.svg)](https://glama.ai/mcp/connectors/com.beamfar/website-monitoring)
 [![Official MCP Registry](https://img.shields.io/badge/MCP_Registry-com.beamfar%2Fwebsite--monitoring-0ea5e9)](https://registry.modelcontextprotocol.io/v0.1/servers?search=com.beamfar/website-monitoring)
 [![OAuth 2.1](https://img.shields.io/badge/Auth-OAuth_2.1_%2B_PKCE-6366f1)](https://beamfar.com/mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-slate)](LICENSE)
